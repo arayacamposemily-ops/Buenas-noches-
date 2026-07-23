@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Buenas noches mi corazón ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background: linear-gradient(to bottom, #020024, #090979, #000);
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+/* BOTÓN INICIO */
+#inicio button{
+    padding:15px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#ffb6c1;
+    color:#000;
+    box-shadow:0 0 20px pink;
+    transition:0.3s;
+}
+
+#inicio button:hover{
+    transform:scale(1.05);
+}
+
+/* CARTA */
+.carta{
+    width:520px;
+    padding:30px;
+    background: rgba(255,255,255,0.12);
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px pink;
+    animation: aparecer 2s;
+}
+
+h1{
+    color:#ffb6c1;
+    margin-bottom:15px;
+}
+
+p{
+    line-height:1.7;
+    font-size:18px;
+}
+
+/* CORAZÓN */
+.corazon{
+    font-size:40px;
+    animation: latido 1s infinite;
+    margin-top:15px;
+}
+
+/* ESTRELLAS */
+.estrella{
+    position:absolute;
+    color:white;
+    pointer-events:none;
+}
+
+/* ABEJITAS NORMALES */
+.abeja{
+    position:absolute;
+    font-size:25px;
+    pointer-events:none;
+    animation: volar 6s linear infinite;
+}
+
+/* ABEJA GRACIOSA */
+.abeja-graciosa{
+    position:absolute;
+    font-size:45px;
+    pointer-events:none;
+    z-index:999;
+}
+
+/* ANIMACIONES */
+@keyframes latido{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+}
+
+@keyframes aparecer{
+    from{opacity:0; transform:translateY(50px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes volar {
+    0% { transform: translateY(100vh) translateX(0); }
+    50% { transform: translateX(50px); }
+    100% { transform: translateY(-100px) translateX(-50px); }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🎵 MÚSICA -->
+<audio id="musica" loop>
+    <source src="descargaa.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 💖 BOTÓN INICIO -->
+<div id="inicio">
+    <button onclick="entrar()">💖 Entrar a la carta que te envio el amor de tu vida</button>
+</div>
+
+<!-- 💌 CARTA -->
+<div class="carta" id="carta" style="display:none;">
+
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+    style="width:120px; margin-bottom:10px;">
+
+    <h1> Buenas noches mi Abejita ❤️</h1>
+
+    <p>
+    Mira mi corazón, hoy no quiero pedirte nada, solo quiero que cierres los ojos sabiendo que hay alguien que piensa en ti con mucho amor.
+    <br><br>
+    Nuestra historia es lo más lindo que me a podido pasar.
+    <br><br>
+    Gracias por seguir permitiéndome ser parte de tu vida.
+    Cada conversación contigo es un pequeño regalo que valoro muchísimo.
+    <br><br>
+    Descansa, sueña bonito y recuerda que alguien piensa en ti antes de dormir. ❤️
+    </p>
+
+    <div class="corazon">❤️</div>
+
+</div>
+
+<script>
+
+/* ENTRAR + MÚSICA */
+function entrar(){
+    document.getElementById("musica").play();
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("carta").style.display = "block";
+}
+
+/* ESTRELLAS */
+function crearEstrella(){
+    let estrella = document.createElement("div");
+    estrella.className = "estrella";
+    estrella.innerHTML = "✨";
+    estrella.style.left = Math.random()*100 + "vw";
+    estrella.style.top = Math.random()*100 + "vh";
+    estrella.style.fontSize = (10 + Math.random()*20) + "px";
+
+    document.body.appendChild(estrella);
+
+    setTimeout(()=>{ estrella.remove(); },5000);
+}
+
+setInterval(crearEstrella,300);
+
+/* ABEJITAS NORMALES */
+function crearAbeja(){
+    let abeja = document.createElement("div");
+    abeja.className = "abeja";
+    abeja.innerHTML = "🐝";
+
+    abeja.style.left = Math.random()*100 + "vw";
+    abeja.style.top = Math.random()*100 + "vh";
+
+    document.body.appendChild(abeja);
+
+    setTimeout(()=>{ abeja.remove(); },6000);
+}
+
+setInterval(crearAbeja,800);
+
+/* ABEJA GRACIOSA (VUELO REAL) */
+let abejaLoca = document.createElement("div");
+abejaLoca.className = "abeja-graciosa";
+abejaLoca.innerHTML = "";
+document.body.appendChild(abejaLoca);
+
+let x = 100;
+let y = 100;
+
+function moverAbejaLoca(){
+    x = Math.random() * (window.innerWidth - 60);
+    y = Math.random() * (window.innerHeight - 60);
+
+    abejaLoca.style.left = x + "px";
+    abejaLoca.style.top = y + "px";
+}
+
+setInterval(moverAbejaLoca, 700);
+
+</script>
+
+</body>
+</html>
